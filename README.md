@@ -33,7 +33,7 @@ ai-daily-digest/
 
 이 저장소는 **Claude Code Routines**를 통해 자동으로 업데이트됩니다.
 
-1. 매일 오전 8시(KST), Claude Code Routine이 트리거됨
+1. 매일 오전 9시(KST), Claude Code Routine이 트리거됨
 2. Claude가 웹에서 최신 AI 뉴스를 수집
 3. 한국어로 요약 및 분류
 4. `digests/YYYY-MM-DD.md` 형식으로 커밋
