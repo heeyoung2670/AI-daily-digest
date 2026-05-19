@@ -2,6 +2,8 @@
 
 > Claude Code Routines로 구동되는 AI 뉴스 자동 수집 및 요약 시스템
 
+🌐 **[https://heeyoung2670.github.io/AI-daily-digest](https://heeyoung2670.github.io/AI-daily-digest)**
+
 매일 오전 9시, Claude가 자동으로 AI 관련 최신 뉴스를 수집하고 한국어로 요약하여 이 저장소에 커밋합니다.
 
 ---
@@ -15,6 +17,7 @@ ai-daily-digest/
 │   ├── 2025-05-19.md
 │   └── ...
 ├── CLAUDE.md
+├── index.html
 └── README.md
 ```
 
@@ -37,7 +40,7 @@ ai-daily-digest/
 1. 매일 오전 9시(KST), Claude Code Routine이 트리거됨
 2. Claude가 웹에서 최신 AI 뉴스를 수집
 3. 한국어로 요약 및 분류
-4. `digests/YYYY-MM-DD.md` 형식으로 커밋
+4. `digests/YYYY-MM-DD.md` 및 `index.html` 생성 후 커밋
 
 ## 🗂️ 지난 다이제스트 보기
 
