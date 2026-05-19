@@ -4,6 +4,7 @@
 - 파일명 형식: digests/YYYY-MM-DD.md
 - 중립적이고 사실 중심으로 작성
 - 각 뉴스에 출처 URL 반드시 포함
+- arXiv 논문은 카테고리 목록(arxiv.org/list/...) 대신 반드시 개별 논문 URL(arxiv.org/abs/XXXX.XXXXX) 사용. 논문 제목으로 검색해서 확보할 것
 
 ## 생성할 파일
 
