@@ -5,9 +5,43 @@
 - 중립적이고 사실 중심으로 작성
 - 각 뉴스에 출처 URL 반드시 포함
 
+## 생성할 파일
+
+매 실행마다 아래 두 파일을 모두 생성 및 업데이트한다.
+
+### 1. `digests/YYYY-MM-DD.md`
+마크다운 형식의 날짜별 아카이브 파일.
+
+### 2. `index.html`
+GitHub Pages로 서빙되는 웹 페이지. 저장소 루트의 `index.html`을 매일 덮어쓴다.
+기존 `index.html`의 HTML 구조와 CSS는 그대로 유지하고, 아래 영역의 내용만 교체한다.
+
+**교체할 영역:**
+
+`#grid-headline` 내부 — 헤드라인 카드들 (최대 5개):
+```html
+<div class="card">
+  <div class="card-num">01</div>
+  <div class="card-title">제목</div>
+  <div class="card-body">요약 내용</div>
+  <a class="card-link" href="출처URL">원문 보기 →</a>
+</div>
+```
+
+`#grid-research` 내부 — 연구/논문 카드들:
+동일한 card 구조 사용. card-num에는 "Research" 텍스트.
+
+`#grid-company` 내부 — 기업 소식 카드들:
+동일한 card 구조 사용. card-num에는 "Company" 텍스트.
+
+`#grid-dev` 내부 — 개발자 소식 카드들:
+동일한 card 구조 사용. card-num에는 "Dev" 텍스트.
+
+`#insight-text` 내부 — 오늘의 인사이트 한 문장.
+
 ## 커밋 워크플로우
 
-1. 작업 브랜치에서 다이제스트 파일 생성 및 커밋
+1. 작업 브랜치에서 `digests/YYYY-MM-DD.md`와 `index.html` 생성 및 커밋
 2. 커밋 메시지 형식: `digest: YYYY-MM-DD AI news summary`
 3. 작업 브랜치를 main에 머지 후 push까지 자동 완료 (PR 생성 없이 직접 머지)
 4. 머지가 성공한 경우, 작업 브랜치를 원격에서 삭제
