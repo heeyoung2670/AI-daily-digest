@@ -136,16 +136,36 @@
     /* ── Cards ── */
     .card-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      grid-template-columns: repeat(2, 1fr);
       gap: 1px;
       background: var(--rule);
       border: 1px solid var(--rule);
     }
 
+    @media (max-width: 540px) {
+      .card-grid { grid-template-columns: 1fr; }
+    }
+
+    /* 첫 카드: 항상 피처드(전체 너비) */
+    .card-grid .card:first-child {
+      grid-column: 1 / -1;
+    }
+
+    .card-grid .card:first-child .card-title {
+      font-size: 1.2rem;
+    }
+
+    /* 마지막 카드가 홀수 번째(짝수 total)일 때 혼자 → 전체 너비 */
+    .card-grid .card:last-child:nth-child(even) {
+      grid-column: 1 / -1;
+    }
+
     .card {
       background: var(--card);
-      padding: 1.25rem 1.5rem;
+      padding: 1.4rem 1.6rem;
       transition: background 0.15s;
+      display: flex;
+      flex-direction: column;
     }
     .card:hover { background: #fff; }
 
@@ -160,20 +180,21 @@
 
     .card-title {
       font-family: 'DM Serif Display', serif;
-      font-size: 1rem;
+      font-size: 1.05rem;
       line-height: 1.4;
-      margin-bottom: 0.6rem;
+      margin-bottom: 0.65rem;
     }
 
     .card-body {
-      font-size: 0.82rem;
-      line-height: 1.65;
+      font-size: 0.875rem;
+      line-height: 1.7;
       color: var(--ink-light);
+      flex: 1;
     }
 
     .card-link {
       display: inline-block;
-      margin-top: 0.75rem;
+      margin-top: 1rem;
       font-size: 0.7rem;
       letter-spacing: 0.08em;
       text-transform: uppercase;
