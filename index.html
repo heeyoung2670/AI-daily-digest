@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Daily Digest</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #F5F2EB;
+      --ink: #1A1A18;
+      --ink-light: #6B6860;
+      --accent: #C8410A;
+      --rule: #D9D5CC;
+      --card: #FDFCF9;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      min-height: 100vh;
+    }
+
+    /* ── Header ── */
+    header {
+      border-bottom: 2px solid var(--ink);
+      padding: 0 clamp(1.5rem, 5vw, 4rem);
+    }
+
+    .header-top {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      padding: 1.25rem 0 0.75rem;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .masthead {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+
+    .masthead span { color: var(--accent); font-style: italic; }
+
+    .header-meta {
+      text-align: right;
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      line-height: 1.7;
+    }
+
+    .nav-bar {
+      display: flex;
+      gap: 2rem;
+      padding: 0.6rem 0;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: var(--ink-light);
+      overflow-x: auto;
+    }
+
+    .nav-bar a {
+      color: inherit;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: color 0.2s;
+    }
+    .nav-bar a:hover { color: var(--accent); }
+
+    /* ── Layout ── */
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: clamp(1.5rem, 4vw, 3rem) clamp(1.5rem, 5vw, 4rem);
+    }
+
+    .date-banner {
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .date-banner::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--rule);
+    }
+
+    /* ── Section ── */
+    .section { margin-bottom: 3rem; }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .section-icon { font-size: 1rem; }
+
+    .section-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.01em;
+    }
+
+    .section-count {
+      margin-left: auto;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      background: var(--rule);
+      padding: 0.2rem 0.6rem;
+      border-radius: 2px;
+    }
+
+    /* ── Cards ── */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1px;
+      background: var(--rule);
+      border: 1px solid var(--rule);
+    }
+
+    .card {
+      background: var(--card);
+      padding: 1.25rem 1.5rem;
+      transition: background 0.15s;
+    }
+    .card:hover { background: #fff; }
+
+    .card-num {
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+
+    .card-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1rem;
+      line-height: 1.4;
+      margin-bottom: 0.6rem;
+    }
+
+    .card-body {
+      font-size: 0.82rem;
+      line-height: 1.65;
+      color: var(--ink-light);
+    }
+
+    .card-link {
+      display: inline-block;
+      margin-top: 0.75rem;
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s;
+    }
+    .card-link:hover { border-bottom-color: var(--accent); }
+
+    /* ── Insight box ── */
+    .insight-box {
+      background: var(--ink);
+      color: var(--bg);
+      padding: 1.75rem 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .insight-box::before {
+      content: '"';
+      position: absolute;
+      top: -0.5rem;
+      left: 1rem;
+      font-family: 'DM Serif Display', serif;
+      font-size: 8rem;
+      line-height: 1;
+      color: rgba(255,255,255,0.06);
+      pointer-events: none;
+    }
+
+    .insight-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 0.75rem;
+    }
+
+    .insight-text {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+      line-height: 1.5;
+      font-style: italic;
+    }
+
+    /* ── Footer ── */
+    footer {
+      border-top: 2px solid var(--ink);
+      padding: 1rem clamp(1.5rem, 5vw, 4rem);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    footer a { color: var(--accent); text-decoration: none; }
+
+    /* ── Animations ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .section {
+      animation: fadeUp 0.5s ease both;
+    }
+    .section:nth-child(1) { animation-delay: 0.05s; }
+    .section:nth-child(2) { animation-delay: 0.12s; }
+    .section:nth-child(3) { animation-delay: 0.19s; }
+    .section:nth-child(4) { animation-delay: 0.26s; }
+    .section:nth-child(5) { animation-delay: 0.33s; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-top">
+    <div class="masthead">AI Daily <span>Digest</span></div>
+    <div class="header-meta">
+      <div id="today-date">— — —</div>
+      <div>Powered by Claude</div>
+    </div>
+  </div>
+  <nav class="nav-bar">
+    <a href="#headline">🔥 헤드라인</a>
+    <a href="#research">🧪 연구 동향</a>
+    <a href="#company">🏢 기업 소식</a>
+    <a href="#dev">🛠️ 개발자 소식</a>
+    <a href="#insight">💡 인사이트</a>
+  </nav>
+</header>
+
+<main>
+
+  <div class="date-banner" id="date-banner">Loading…</div>
+
+  <!-- 🔥 헤드라인 -->
+  <section class="section" id="headline">
+    <div class="section-header">
+      <span class="section-icon">🔥</span>
+      <h2 class="section-title">오늘의 헤드라인</h2>
+      <span class="section-count">TOP 5</span>
+    </div>
+    <div class="card-grid" id="grid-headline">
+      <!-- Claude가 채워넣는 영역 -->
+      <div class="card">
+        <div class="card-num">01</div>
+        <div class="card-title">헤드라인 제목이 여기에 들어갑니다</div>
+        <div class="card-body">뉴스 요약 내용이 여기에 들어갑니다. Claude가 매일 이 내용을 업데이트합니다.</div>
+        <a class="card-link" href="#">원문 보기 →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 🧪 연구 동향 -->
+  <section class="section" id="research">
+    <div class="section-header">
+      <span class="section-icon">🧪</span>
+      <h2 class="section-title">연구 및 논문 동향</h2>
+    </div>
+    <div class="card-grid" id="grid-research">
+      <div class="card">
+        <div class="card-num">Research</div>
+        <div class="card-title">논문/연구 제목</div>
+        <div class="card-body">연구 요약 내용이 여기에 들어갑니다.</div>
+        <a class="card-link" href="#">원문 보기 →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 🏢 기업 소식 -->
+  <section class="section" id="company">
+    <div class="section-header">
+      <span class="section-icon">🏢</span>
+      <h2 class="section-title">기업 소식</h2>
+    </div>
+    <div class="card-grid" id="grid-company">
+      <div class="card">
+        <div class="card-num">Company</div>
+        <div class="card-title">기업 소식 제목</div>
+        <div class="card-body">기업 소식 요약 내용이 여기에 들어갑니다.</div>
+        <a class="card-link" href="#">원문 보기 →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 🛠️ 개발자 소식 -->
+  <section class="section" id="dev">
+    <div class="section-header">
+      <span class="section-icon">🛠️</span>
+      <h2 class="section-title">개발자 소식</h2>
+    </div>
+    <div class="card-grid" id="grid-dev">
+      <div class="card">
+        <div class="card-num">Dev</div>
+        <div class="card-title">개발자 도구/오픈소스 제목</div>
+        <div class="card-body">개발자 소식 요약이 여기에 들어갑니다.</div>
+        <a class="card-link" href="#">원문 보기 →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 💡 인사이트 -->
+  <section class="section" id="insight">
+    <div class="section-header">
+      <span class="section-icon">💡</span>
+      <h2 class="section-title">오늘의 인사이트</h2>
+    </div>
+    <div class="insight-box">
+      <div class="insight-label">Today's Insight</div>
+      <div class="insight-text" id="insight-text">
+        오늘의 핵심 인사이트가 여기에 들어갑니다. Claude가 매일 가장 중요한 트렌드를 한 문장으로 요약합니다.
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <span>AI Daily Digest</span>
+  <span>Generated by <a href="https://claude.ai/code/routines">Claude Code Routines</a></span>
+  <span id="footer-date"></span>
+</footer>
+
+<script>
+  const d = new Date();
+  const fmt = d.toLocaleDateString('ko-KR', { year:'numeric', month:'long', day:'numeric', weekday:'long' });
+  const fmtShort = d.toISOString().slice(0,10);
+  document.getElementById('today-date').textContent = fmt;
+  document.getElementById('date-banner').textContent = fmt;
+  document.getElementById('footer-date').textContent = fmtShort;
+</script>
+
+</body>
+</html>
