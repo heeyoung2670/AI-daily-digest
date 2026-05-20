@@ -49,4 +49,3 @@ GitHub Pages로 서빙되는 웹 페이지. 저장소 루트의 `index.html`을 
 2. 커밋 메시지 형식: `digest: YYYY-MM-DD AI news summary`
 3. 커밋 직후 작업 브랜치를 원격에 push
 4. 작업 브랜치를 main에 머지 후 push까지 자동 완료 (PR 생성 없이 직접 머지)
-5. 머지에 실패한 경우, 작업 브랜치를 삭제하지 말고 그대로 유지
